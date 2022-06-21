@@ -28,4 +28,11 @@ See pdal batch processing ([docs](https://pdal.io/workshop/exercises/batch_proce
 Please see the docs for additional information on e.g. specifying the nr. of jobs to be processes in parallel.
 
 ## Example - Making DSMs from USGS point cloud data
-You can download extensitve LiDAR point cloud data from USGS's [data portal](https://apps.nationalmap.gov/downloader/). The data is tiled in relatively small files, so to collect data over a larger area many files are needed. The files are in `.laz` format. The following example details how to convert these into Digital Surface Model (DSM) raster files, stored as `.tif`-files.
+You can download extensitve LiDAR point cloud data from USGS's [data portal](https://apps.nationalmap.gov/downloader/). The data is tiled in relatively small files, so to collect data over a larger area many files are needed. The files are in `.laz` format. The following example details how to convert these into Digital Surface Model (DSM) raster files, stored as `.tif`-files with the same name except with a `dsm`-prefix.
+
+1. Save the `.laz` files in a driectory `pointclouds` (or one of any other name).
+2. Create a directory `rasters` for the output.
+3. Call `pdal` pipeline `get_dsm.json` in parallel on all the files with
+
+> `ls <path_to_pointclouds>/*.laz | parallel -I{} pdal pipeline get_dsm.json \`
+> `--readers.las.filename={} --writers.gdal.filename=<path_to_rasters>dsm_{/.}.tif`
