@@ -1,0 +1,12 @@
+{
+  "pipeline": [
+              "dsm.laz",
+              {
+                "type": "writers.gdal",
+                "resolution": "1.0",
+                "gdaldriver": "GTiff",
+                "output_type": "mean",
+                "filename": "dsm.tif"
+              }
+              ]
+}

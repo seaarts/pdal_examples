@@ -1,0 +1,28 @@
+{
+  "pipeline":
+  [
+    "/Users/sander/Documents/ithaca_gis/USGS_LPC_NY_FingerLakes_2020_A20_u_3750069950.laz",
+    {
+      "type": "filters.reprojection",
+      "out_srs": "EPSG:26918"
+    },
+    {
+      "type": "filters.assign",
+      "assignment": "Classification[:]=2"
+    },
+    {
+      "type": "filters.outlier"
+    },
+    {
+      "type": "filters.range",
+      "limits":"Classification[2:2]"
+    },
+    {
+      "type": "writers.gdal",
+      "filename": "new_dsm.tif",
+      "gdaldriver": "GTiff",
+      "output_type": "mean",
+      "resolution": 2.0
+    }
+  ]
+}

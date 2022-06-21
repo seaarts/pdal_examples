@@ -1,0 +1,62 @@
+#------------------------------------------------------------------------ 
+#  A dpal pipeline for extracting digital surface models
+#  from point clouds data sets
+#  Sander Aarts, 2022 (sea78@cornell.edu)
+#  Based loosely on the "Identifying ground" tutorial:
+#      https://pdal.io/workshop/exercises/analysis/ground/ground.html
+#
+#  A brief description of the pipeline:
+#    1. A point cloud in .laz format is given as input.
+#    2. The point cloud is reprojected into CRS EPSG:26918
+#    3. All points classified as vegetation (Classes 2 - 5) are dropped.
+#    4. Remaining points are reclassified as "0".
+#    5. Extended local minima ELM and outliers are removed.
+#    6. An SMRF filter is applied to roughly identify ground. Tuning of
+#       the parameters may be necessary so as not to delete buildings.
+#       "Ground" points are given Class 2.
+#    7. Only points classified as ground points are retained.
+#    8. The point cloud is rasterized and saved as a .tif file. 
+#------------------------------------------------------------------------
+
+{
+  "pipeline":[
+    "input.laz",
+    {
+      "type": "filters.reprojection",
+      "out_srs": "EPSG:26918"
+    },
+    {
+      "type": "filters.range",
+      "limits": "Classification!(2:5]"
+    },
+    {
+      "type": "filters.assign",
+      "assignment": "Classification[:]=0"
+    },
+    {
+      "type": "filters.elm"
+    },
+    {
+      "type": "filters.outlier"
+    },
+    {
+      "type": "filters.smrf",
+      "ignore": "Classification[7:7]",
+      "scalar": 3.5,
+      "slope": 500.00,
+      "window": 25,
+      "threshold": 2.5
+    },
+    {
+      "type": "filters.range",
+      "limits":"Classification[2:2]"
+    },
+    {
+      "type": "writers.gdal",
+      "resolution": "1.0",
+      "gdaldriver": "GTiff",
+      "output_type": "mean",
+      "filename": "dsm.tif"
+    }
+  ]
+}
