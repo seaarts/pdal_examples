@@ -34,5 +34,5 @@ You can download extensitve LiDAR point cloud data from USGS's [data portal](htt
 2. Create a directory `rasters` for the output.
 3. Call `pdal` pipeline `get_dsm.json` in parallel on all the files with
 
-> `ls <path_to_pointclouds>/*.laz | parallel -I{} pdal pipeline get_dsm.json \`
+> `ls <path_to_pointclouds>/*.laz | parallel -I{} pdal pipeline get_dsm.json \` <br>
 > `--readers.las.filename={} --writers.gdal.filename=<path_to_rasters>dsm_{/.}.tif`
