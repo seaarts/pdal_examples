@@ -1,4 +1,4 @@
-# pdal_ithaca
+# pdal basics
 Snippets of pdal for making DSMs from LAZ files
 
 
