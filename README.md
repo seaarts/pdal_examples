@@ -22,7 +22,7 @@ Note that the pipeline `get_dsm.json` is special in that it transforms a point c
 
 See pdal batch processing ([docs](https://pdal.io/workshop/exercises/batch_processing/batch-processing.html)). To process all files in a directory we can use bash and GNU parallel ([docs](https://www.gnu.org/software/parallel/)) (which one should cite). The syntax is relatively simple and builds on substitutios. For instance to make DSMs of all `.laz` files in `input_dir` and create files `dsm_<filename>.tif` in `output_dir` we issue the command
 
-> `ls input_dir*.laz | parallel -I{} pdal pipeline get_dsm.json \` <br>
+> `ls input_dir/*.laz | parallel -I{} pdal pipeline get_dsm.json \` <br>
 >  `--readers.las.filename={} --writers.gdal.filename=output_dir/dsm_{/.}.tif`
 
 Please see the docs for additional information on e.g. specifying the nr. of jobs to be processes in parallel.
