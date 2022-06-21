@@ -16,7 +16,7 @@ In the pipeline, either implicitly or explicitly, there is a reader and a writer
 
 > `pdal pipeline get_dsm.json --writers.gdal.filename=output_dsm.tif --readers.las.input=input_cloud.laz`
 
-Note that the pipeline `get_dsm.json` is special in that it transforms a point cloud  `.laz` into a raster `.tif`; the reader is `reader.las` and the writer `writer.gdal`.
+Note that the pipeline `get_dsm.json` is special in that it transforms a point cloud  `.laz` into a raster `.tif`. As a result the reader and writer are different; the reader is `reader.las` and the writer `writer.gdal`.
 
 ## processing many files
 
