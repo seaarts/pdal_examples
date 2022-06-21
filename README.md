@@ -26,3 +26,6 @@ See pdal batch processing ([docs](https://pdal.io/workshop/exercises/batch_proce
 >  `--readers.las.filename={} --writers.gdal.filename=output_dir/dsm_{/.}.tif`
 
 Please see the docs for additional information on e.g. specifying the nr. of jobs to be processes in parallel.
+
+## Example - Making DSMs from USGS point cloud data
+You can download extensitve LiDAR point cloud data from USGS's [data portal](https://apps.nationalmap.gov/downloader/). The data is tiled in relatively small files, so to collect data over a larger area many files are needed. The files are in `.laz` format. The following example details how to convert these into Digital Surface Model (DSM) raster files, stored as `.tif`-files.
