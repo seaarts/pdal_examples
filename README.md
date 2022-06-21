@@ -1,5 +1,5 @@
 # pdal basics
-Snippets of pdal for making DSMs from LAZ files
+Snippets of pdal pipeloines for processing `.las` and `.laz` point cloud files into rasters, such as DSMs, DEMs etc.
 
 
 # Basic usage instructions
