@@ -1,5 +1,5 @@
 # pdal basics
-Snippets of pdal pipeloines for processing `.las` and `.laz` point cloud files into rasters, such as DSMs, DEMs etc.
+Snippets of pdal pipelines for processing `.las` and `.laz` point cloud files into rasters, such as DSMs, DEMs etc. Saved for my own records.
 
 
 # Basic usage instructions
